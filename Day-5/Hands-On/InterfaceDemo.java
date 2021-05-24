@@ -1,4 +1,4 @@
-package com.onebill.training.interfaces;
+
 
 interface MyInterface{
 	void myMethod1();
