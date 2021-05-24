@@ -17,7 +17,7 @@
 **Day 4 - Introduction to Git**
 - [Reference Note](https://www.notion.so/Day-4-Introduction-to-Git-8fe69a4a245d44f582b7de9e09ad676a)
 
-**Day 5 - Java Interfaces, Abstract Class, Inheritance
+**Day 5 - Java Interfaces, Abstract Class, Inheritance**
 - [Hands-On](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-5/Hands-On)
 - [Assignments](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-5/Assignments)
 - [Reference Note](https://www.notion.so/Day-5-Interfaces-Abstract-Class-Inheritance-725320f712e84c3f9d17bb901da76533)
