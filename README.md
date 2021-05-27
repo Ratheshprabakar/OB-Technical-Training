@@ -21,3 +21,8 @@
 - [Hands-On](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-5/Hands-On)
 - [Assignments](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-5/Assignments)
 - [Reference Note](https://www.notion.so/Day-5-Interfaces-Abstract-Class-Inheritance-725320f712e84c3f9d17bb901da76533)
+
+**Day 6 - Final, Arrays, Strings & it's Operations**
+- [Hands-On](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-6/Hands-On)
+- [Assignments](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-6/Assignments)
+- [Reference](https://www.notion.so/Day-6-Final-Arrays-Strings-it-s-Operations-2e5f2a5e9b9d42d7be16df61b21ea50c)
