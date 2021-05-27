@@ -1,5 +1,6 @@
 /**
- * 
+ * @Class Name : TryWithResources
+   @Description : Demonstrated Try with Resources with opening and printing a file
  */
 package com.onebill.training.assignments.day7;
 
@@ -8,8 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * @author rathesh
- *
+ * @author Rathesh Prabakar 
+ * @Version 1.0 26.05.2021
  */
 public class TryWithResources {
 
