@@ -26,3 +26,8 @@
 - [Hands-On](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-6/Hands-On)
 - [Assignments](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-6/Assignments)
 - [Reference](https://www.notion.so/Day-6-Final-Arrays-Strings-it-s-Operations-2e5f2a5e9b9d42d7be16df61b21ea50c)
+
+**Day 7 - Exception Handling and Introduction to MultiThreading**
+- [Hands-On](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-7/Hands-On)
+- [Assignments](https://github.com/Ratheshprabakar/OB-Technical-Training/tree/master/Day-7/Assignments)
+- [Reference](https://www.notion.so/Day-7-Exception-Handling-Multi-Threading-Basics-a9f89ffe44da4d56a24ca44d265248e8)
