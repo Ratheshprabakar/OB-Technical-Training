@@ -1,0 +1,507 @@
+mysql> select * from sales;
+No connection. Trying to reconnect...
+ERROR 1049 (42000): Unknown database 'atheshDesktopoutput.txt'
+ERROR: 
+Can't connect to the server
+
+mysql> use training;
+No connection. Trying to reconnect...
+Connection id:    9
+Current database: *** NONE ***
+
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_training |
++--------------------+
+| customer           |
+| employee           |
+| item               |
+| office             |
+| orders             |
+| person_inf         |
+| sales              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from office;
++------------+--------------+--------+----------+----------+-------+---------+------------+
+| officeCode | city         | phone  | address1 | address2 | state | country | postalcode |
++------------+--------------+--------+----------+----------+-------+---------+------------+
+|          1 | San Frncisco | 423423 | sdsd     | sdsd     | CA    | USA     |      98040 |
+|          2 | San Deigo    | 423423 | sdsd     | sdsd     | CA    | USA     |      98041 |
+|          3 | Middletown   | 420023 | sdsd     | sdsd     | NY    | UK      |       8041 |
++------------+--------------+--------+----------+----------+-------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from sales;
+    -> //
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 105 |      2 |      10 |    10 |   100 |
++-----+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |    5 | 100   | Cosmetics |
+|      2 | Marie   |    5 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update item set qoh= 100;
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update item set qoh = qoh - sales.qtysold where item.itemid = sales.itemid;
+ERROR 1054 (42S22): Unknown column 'sales.itemid' in 'where clause'
+mysql> update item as i set i.qoh = i.qoh - sales.qtysold where i.itemid = sales.itemid;
+ERROR 1054 (42S22): Unknown column 'sales.itemid' in 'where clause'
+mysql> update item as i sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid' at line 1
+mysql> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |  100 | 100   | Cosmetics |
+|      2 | Marie   |   95 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |  100 | 100   | Cosmetics |
+|      2 | Marie   |   90 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 105 |      2 |      10 |    10 |   100 |
++-----+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into sales values(103,1,5,10,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
++-----+--------+---------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> delimiter //
+mysql> create trigger t2 
+    -> 
+    -> after update
+    -> 
+    -> on item
+    -> 
+    -> for each row 
+    -> 
+    -> begin 
+    -> 
+    -> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+    -> 
+    -> end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from item;
+    -> //
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
++-----+--------+---------+-------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into sales(106,1,20,100,0)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '106,1,20,100,0)' at line 1
+mysql> insert into sales values(106,1,20,100,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
++-----+--------+---------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> drop trigger t2;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter //
+mysql> create trigger t2 
+    -> 
+    -> after update
+    -> 
+    -> on sales
+    -> 
+    -> for each row 
+    -> 
+    -> begin 
+    -> 
+    -> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+    -> 
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> delimiter ;
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
++-----+--------+---------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> drop trigger t2;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> 
+mysql> delimiter //
+mysql> create trigger t2 
+    -> 
+    -> after insert
+    -> 
+    -> on sales
+    -> 
+    -> for each row 
+    -> 
+    -> begin 
+    -> 
+    -> update item as i, sales as s set i.qoh = i.qoh - s.qtysold where i.itemid = s.itemid;
+    -> 
+    -> end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> select * from sales;
+    -> //
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
++-----+--------+---------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   95 | 100   | Cosmetics |
+|      2 | Marie   |   85 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into sales values (107,1,50,10,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
+| 107 |      1 |      50 |    10 |   500 |
++-----+--------+---------+-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   90 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> drop trigger t2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger t2
+    -> 
+    -> after insert
+    -> 
+    -> on sales
+    -> 
+    -> for each row
+    -> 
+    -> begin
+    -> 
+    -> update item set qoh=qoh-new.qtysold where itemid=new.itemid;
+    -> 
+    -> end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from item;
+    -> //
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   90 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   90 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
+| 107 |      1 |      50 |    10 |   500 |
++-----+--------+---------+-------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into sales values(108,1,20,20,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
+| 107 |      1 |      50 |    10 |   500 |
+| 108 |      1 |      20 |    20 |   400 |
++-----+--------+---------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   70 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from office;
++------------+--------------+--------+----------+----------+-------+---------+------------+
+| officeCode | city         | phone  | address1 | address2 | state | country | postalcode |
++------------+--------------+--------+----------+----------+-------+---------+------------+
+|          1 | San Frncisco | 423423 | sdsd     | sdsd     | CA    | USA     |      98040 |
+|          2 | San Deigo    | 423423 | sdsd     | sdsd     | CA    | USA     |      98041 |
+|          3 | Middletown   | 420023 | sdsd     | sdsd     | NY    | UK      |       8041 |
++------------+--------------+--------+----------+----------+-------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table add column status varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add column status varchar(20)' at line 1
+mysql> alter table office add column status varchar(20);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from office;
++------------+--------------+--------+----------+----------+-------+---------+------------+--------+
+| officeCode | city         | phone  | address1 | address2 | state | country | postalcode | status |
++------------+--------------+--------+----------+----------+-------+---------+------------+--------+
+|          1 | San Frncisco | 423423 | sdsd     | sdsd     | CA    | USA     |      98040 | NULL   |
+|          2 | San Deigo    | 423423 | sdsd     | sdsd     | CA    | USA     |      98041 | NULL   |
+|          3 | Middletown   | 420023 | sdsd     | sdsd     | NY    | UK      |       8041 | NULL   |
++------------+--------------+--------+----------+----------+-------+---------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update table office set status = "SHIPPED";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table office set status = "SHIPPED"' at line 1
+mysql> update table office set status = 'shipped';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table office set status = 'shipped'' at line 1
+mysql> update office set status = 'shipped';
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update office set status = "In Progress" where officeCode = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from office;
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+| officeCode | city         | phone  | address1 | address2 | state | country | postalcode | status      |
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+|          1 | San Frncisco | 423423 | sdsd     | sdsd     | CA    | USA     |      98040 | shipped     |
+|          2 | San Deigo    | 423423 | sdsd     | sdsd     | CA    | USA     |      98041 | In Progress |
+|          3 | Middletown   | 420023 | sdsd     | sdsd     | NY    | UK      |       8041 | shipped     |
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create procedure getordercount(
+    -> 
+    -> in orderstatus varchar(20),
+    -> 
+    -> out total int
+    -> 
+    -> )
+    -> 
+    -> begin
+    -> 
+    -> select count(officecode)
+    -> 
+    -> into total from office
+    -> 
+    -> where status=orderstatus;
+    -> 
+    -> end$$
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> call getordercount('shipped',@total);
+    -> $$
+Query OK, 1 row affected (0.04 sec)
+
+mysql> delimiter ;
+mysql> select @total;
++--------+
+| @total |
++--------+
+|      2 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> call getordercount('In Progress',@InProgress);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> call getordercount('shipped',@Shipped);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @InProgress;
++-------------+
+| @InProgress |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select @Shipped;
++----------+
+| @Shipped |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
