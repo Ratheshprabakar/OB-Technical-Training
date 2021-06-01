@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -20,6 +21,7 @@ public class DynamicDelete {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		Properties properties = new Properties();
 		int count = 0;
 
 		try {
@@ -28,9 +30,10 @@ public class DynamicDelete {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 2 Establish the connection with the database with user and password
+			properties.put("user", "root");
+			properties.put("password", "Onebill@2020");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/OneBillStudent?autoReconnect=true&useSSL=false", "root",
-					"Onebill@2020");
+					"jdbc:mysql://localhost:3306/OneBillStudent?autoReconnect=true&useSSL=false", properties);
 
 			// Step 3 Issuing Query
 			String query = "delete from  student where sid = ?";
@@ -62,6 +65,8 @@ public class DynamicDelete {
 					con.close();
 				if (pstmt != null)
 					pstmt.close();
+				if (properties != null)
+					properties = null;
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
