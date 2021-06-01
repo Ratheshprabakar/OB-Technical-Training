@@ -123,3 +123,166 @@ mysql> select * from student;
 +-----+---------+-------+
 4 rows in set (0.00 sec)
 
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   4 | Karthi  |    96 |
++-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| OneBillBankDB      |
+| OneBillStudent     |
+| mysql              |
+| onebill            |
+| onebill1           |
+| onebill2           |
+| performance_schema |
+| sys                |
+| training           |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use OneBillBankDB;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_OneBillBankDB |
++-------------------------+
+| Employee                |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| empid     | int(11)     | NO   | PRI | NULL    |       |
+| empname   | varchar(50) | YES  |     | NULL    |       |
+| empsalary | int(11)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| OneBillBankDB      |
+| OneBillStudent     |
+| mysql              |
+| onebill            |
+| onebill1           |
+| onebill2           |
+| performance_schema |
+| sys                |
+| training           |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use OneBillStudent;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------------+
+| Tables_in_OneBillStudent |
++--------------------------+
+| student                  |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> use training;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_training |
++--------------------+
+| customer           |
+| employee           |
+| item               |
+| office             |
+| orders             |
+| person_inf         |
+| sales              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+---------+---------------------+-------------+------------+------------+--------+------------+------------+-------------------+
+| id | name    | email               | mobile      | dob        | doj        | gender | experience | department | designation       |
++----+---------+---------------------+-------------+------------+------------+--------+------------+------------+-------------------+
+|  1 | Rahul   | rahul@gmail.com     | 8124807980  | 1999-11-30 | 2021-08-12 | Male   |          1 | A          | Software Engineer |
+|  2 | Rohit   | rohit@gmail.com     | 9876123456  | 1992-10-19 | 2016-08-12 | Male   |          4 | B          | Tester            |
+|  3 | Rajath  | rajath@gmail.com    | 9443424100  | 1999-04-11 | 2019-06-09 | Male   |          3 | B          | Software Engineer |
+|  4 | Rakesh  | rakesh@gmail.com    | 81248707980 | 1998-10-19 | 2020-08-12 | Male   |          2 | A          | Software Engineer |
+|  5 | Reshma  | reshma@gmail.com    | 9443412300  | 1996-04-11 | 2016-07-28 | Female |          6 | B          | Tester            |
+|  6 | Rebecca | rakshitha@gmail.com | 909876123   | 1999-09-09 | 2017-06-09 | Female |          4 | C          | HR                |
++----+---------+---------------------+-------------+------------+------------+--------+------------+------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from office;
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+| officeCode | city         | phone  | address1 | address2 | state | country | postalcode | status      |
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+|          1 | San Frncisco | 423423 | sdsd     | sdsd     | CA    | USA     |      98040 | shipped     |
+|          2 | San Deigo    | 423423 | sdsd     | sdsd     | CA    | USA     |      98041 | In Progress |
+|          3 | Middletown   | 420023 | sdsd     | sdsd     | NY    | UK      |       8041 | shipped     |
++------------+--------------+--------+----------+----------+-------+---------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| OneBillBankDB      |
+| OneBillStudent     |
+| mysql              |
+| onebill            |
+| onebill1           |
+| onebill2           |
+| performance_schema |
+| sys                |
+| training           |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use OneBillStudent;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------------+
+| Tables_in_OneBillStudent |
++--------------------------+
+| student                  |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   4 | Karthi  |    96 |
+|   5 | Rasega  |    89 |
++-----+---------+-------+
+4 rows in set (0.00 sec)
+
