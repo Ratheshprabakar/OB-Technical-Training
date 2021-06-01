@@ -505,3 +505,108 @@ mysql> select @Shipped;
 +----------+
 1 row in set (0.00 sec)
 
+mysql> select * from cutomers;
+ERROR 1146 (42S02): Table 'training.cutomers' doesn't exist
+mysql> select * from cutomer;
+ERROR 1146 (42S02): Table 'training.cutomer' doesn't exist
+mysql> select * from customer;
++-----+-------+-------------+
+| cid | name  | designation |
++-----+-------+-------------+
+|   1 | Rohan | Engineer    |
+|   2 | Raj   | Tester      |
+|   3 | Rohit | Analyst     |
++-----+-------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from items;
+ERROR 1146 (42S02): Table 'training.items' doesn't exist
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   70 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
+| 107 |      1 |      50 |    10 |   500 |
+| 108 |      1 |      20 |    20 |   400 |
++-----+--------+---------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into sales values(108,1,10,100,0);
+ERROR 1062 (23000): Duplicate entry '108' for key 'PRIMARY'
+mysql> insert into sales values(109,1,10,100,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sales;
++-----+--------+---------+-------+-------+
+| sid | itemid | qtysold | price | total |
++-----+--------+---------+-------+-------+
+| 101 |      2 |       5 |   100 |   500 |
+| 102 |      2 |       4 |    25 |   100 |
+| 103 |      1 |       5 |    10 |    50 |
+| 105 |      2 |      10 |    10 |   100 |
+| 106 |      1 |      20 |   100 |  2000 |
+| 107 |      1 |      50 |    10 |   500 |
+| 108 |      1 |      20 |    20 |   400 |
+| 109 |      1 |      10 |   100 |  1000 |
++-----+--------+---------+-------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from item;
++--------+---------+------+-------+-----------+
+| itemid | itemdes | qoh  | price | catagory  |
++--------+---------+------+-------+-----------+
+|      1 | Perfume |   60 | 100   | Cosmetics |
+|      2 | Marie   |   80 | 10    | Snacks    |
++--------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from cutomer;
+ERROR 1146 (42S02): Table 'training.cutomer' doesn't exist
+mysql> select * from customer;
++-----+-------+-------------+
+| cid | name  | designation |
++-----+-------+-------------+
+|   1 | Rohan | Engineer    |
+|   2 | Raj   | Tester      |
+|   3 | Rohit | Analyst     |
++-----+-------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from order;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order' at line 1
+mysql> select * from orders;
++-----+--------+------+
+| oid | amount | cid  |
++-----+--------+------+
+| 601 | 10000  |    1 |
+| 602 | 20000  |    4 |
+| 603 | 15000  |    2 |
++-----+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from customer left join orders where customer.cid = orders.cid union select * from customer right join orders where customer.cid = orders.cid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where customer.cid = orders.cid union select * from customer right join orders w' at line 1
+mysql> select * from customer left join orders on customer.cid = orders.cid union select * from customer right join orders on customer.cid = orders.cid;
++------+-------+-------------+------+--------+------+
+| cid  | name  | designation | oid  | amount | cid  |
++------+-------+-------------+------+--------+------+
+|    1 | Rohan | Engineer    |  601 | 10000  |    1 |
+|    2 | Raj   | Tester      |  603 | 15000  |    2 |
+|    3 | Rohit | Analyst     | NULL | NULL   | NULL |
+| NULL | NULL  | NULL        |  602 | 20000  |    4 |
++------+-------+-------------+------+--------+------+
+4 rows in set (0.00 sec)
+
