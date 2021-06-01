@@ -1,0 +1,125 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| onebill            |
+| onebill1           |
+| onebill2           |
+| performance_schema |
+| sys                |
+| training           |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> create database OneBillStudent;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use OneBillStudent;
+Database changed
+mysql> create table student (sid int primary key, sname varchar(20), marks int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++--------------------------+
+| Tables_in_OneBillStudent |
++--------------------------+
+| student                  |
++--------------------------+
+1 row in set (0.01 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sid   | int(11)     | NO   | PRI | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| marks | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+-------+-------+
+| sid | sname | marks |
++-----+-------+-------+
+|   1 | Rohit |    75 |
++-----+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
++-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   3 | Abi     |    80 |
++-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   3 | Abi     |    80 |
+|   4 | Karthi  |    96 |
++-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   3 | Abinaya |    80 |
+|   4 | Karthi  |    96 |
++-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+----------+-------+
+| sid | sname    | marks |
++-----+----------+-------+
+|   1 | Rohit    |    75 |
+|   2 | Rathesh  |    90 |
+|   3 | Abinaya  |    80 |
+|   4 | Karthi   |    96 |
+|  10 | Hindjuja |    98 |
++-----+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+----------+-------+
+| sid | sname    | marks |
++-----+----------+-------+
+|   1 | Rohit    |    75 |
+|   2 | Rathesh  |    90 |
+|   3 | Abinaya  |    80 |
+|   4 | Karthi   |    96 |
+|  10 | Hindhuja |    98 |
++-----+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+-------+
+| sid | sname   | marks |
++-----+---------+-------+
+|   1 | Rohit   |    75 |
+|   2 | Rathesh |    90 |
+|   3 | Abinaya |    80 |
+|   4 | Karthi  |    96 |
++-----+---------+-------+
+4 rows in set (0.00 sec)
+
