@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+	<form action="/StudentServlet/ValidationServlet" method="post">
+	<label>First Name</label><input type="text" name = "firstname">
+	<label>Last Name</label><input type="text" name = "lastname"><br>
+	<label>Email</label><input type="text" name = "email"><br>
+	<label>Password</label><input type="password" name = "password"><br>
+	<label>Mobile Number</label><input type="text" name = "mobile"><br>
+	<label>Gender</label>
+		<input type="radio" name = "gender" value= "Male">Male
+		<input type="radio" name = "gender" value= "Female">Female
+	<br><br>
+	<label>Favorite Programming Language</label>
+		<input type="checkbox" name = "language" value= "Java"/>Java
+		<input type="checkbox" name = "language" value= "Python">Python
+		<input type="checkbox" name = "language" value= "C">C
+	
+	<input type = "submit" value="Submit">
+	
+</form>
+</body>
+</html>
