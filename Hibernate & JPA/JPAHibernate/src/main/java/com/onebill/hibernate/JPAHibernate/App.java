@@ -17,9 +17,9 @@ public class App
     {
         System.out.println( "Hello World!" );
         Movie m = new Movie();
-        m.setMid(1);
-        m.setMname("SP");
-        m.setMrating(9.2);
+        m.setMid(2);
+        m.setMname("Ravanan");
+        m.setMrating(8.2);
         m.setMreview("Good");
         
         
